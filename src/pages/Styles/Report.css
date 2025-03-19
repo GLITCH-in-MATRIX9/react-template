@@ -1,0 +1,197 @@
+/* src/Report.css */
+.report-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #00ffcc;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.report-heading {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.animated-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+  
+}
+
+.animated-button:hover {
+  /* background-color: #00ffcc;
+  color: #1a1a1a;
+  box-shadow: 0 0 15px #00ffcc;
+  transform: scale(1.1); */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+}
+
+.dao-voting-section {
+  width: 80%;
+  margin-top: 2rem;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.report-table th,
+.report-table td {
+  padding: 0.75rem;
+  border: 1px solid #00ffcc;
+}
+
+.report-table th {
+  background-color: #262626;
+}
+
+.vote-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+  
+}
+
+.vote-button:hover {
+  /* background-color: #00ffcc;
+  color: #1a1a1a; */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.popup-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+}
+
+.popup-button:hover {
+  /* background-color: #00ffcc;
+  /* color: #1a1a1a; */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+
+} 
+
+.popup-button.yes:hover {
+  background-color: green;
+}
+
+.popup-button.no:hover {
+  background-color: red;
+}
+
+.close-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+  
+}
+
+.close-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #00ffcc;
+  border-radius: 5px;
+  background-color: #262626;
+  color: #00ffcc;
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+  
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+}

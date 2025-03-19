@@ -331,7 +331,7 @@ button:hover {
   line-height: 1.6;
 }
 
-/* Funky Animation */
+/* Funky Animation for cards*/
 @keyframes funkyAnimation {
   0% {
     transform: translateY(0) rotate(0) scale(1);
