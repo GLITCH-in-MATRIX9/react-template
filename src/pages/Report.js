@@ -32,17 +32,17 @@ function Report() {
 
   return (
     <div className="report-page">
-      {/* Centered Heading */}
-      <h1 className="report-heading">Report Toxic Content and Let DAO Decide Your Fate!</h1>
-
-      {/* Buttons for Submitting and Viewing Reports */}
-      <div className="button-container">
-        <button className="animated-button" onClick={() => setShowReportForm(true)}>
-          Submit Report
-        </button>
-        <button className="animated-button" onClick={() => alert('View Closed Reports')}>
-          View Closed Reports
-        </button>
+      {/* Hero Section */}
+      <div className="hero-section">
+        <h1 className="hero-heading">Report Toxic Content and Let DAO Decide Your Fate!</h1>
+        <div className="hero-buttons">
+          <button className="button" onClick={() => setShowReportForm(true)}>
+            Submit Report
+          </button>
+          <button className="button" onClick={() => alert('View Closed Reports')}>
+            View Closed Reports
+          </button>
+        </div>
       </div>
 
       {/* DAO Voting Section */}
@@ -68,7 +68,7 @@ function Report() {
                 <td>
                   {report.status === 'Open' && (
                     <button
-                      className="vote-button"
+                      className="button vote-button"
                       onClick={() => {
                         setSelectedReportId(report.id);
                         setShowVotePopup(true);
@@ -90,14 +90,15 @@ function Report() {
           <div className="popup-content">
             <h3>Do you agree with this complaint?</h3>
             <div className="popup-buttons">
-              <button className="popup-button yes" onClick={() => handleVote(true)}>
+              <button className="button popup-button yes" onClick={() => handleVote(true)}>
                 Yes
               </button>
-              <button className="popup-button no" onClick={() => handleVote(false)}>
+              <button className="button popup-button no" onClick={() => handleVote(false)}>
                 No
               </button>
             </div>
-            <button className="close-button" onClick={() => setShowVotePopup(false)}>
+            <br />
+            <button className="button close-button" onClick={() => setShowVotePopup(false)}>
               Close
             </button>
           </div>
@@ -125,15 +126,32 @@ function Report() {
                 <label>Username of the harasser:</label>
                 <input type="text" placeholder="Enter username" required />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Upload Screenshot:</label>
                 <input type="file" accept="image/*" />
+              </div> */}
+              <div className="form-group">
+                <label>Upload Screenshot:</label>
+                <div className="custom-file-input">
+                  <input
+                    type="file"
+                    id="screenshot"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const fileName = e.target.files[0] ? e.target.files[0].name : "No file chosen";
+                      document.getElementById("file-name").textContent = fileName;
+                    }}
+                  />
+                  <label htmlFor="screenshot">Choose File</label>
+                  <div id="file-name" className="file-name">No file chosen</div>
+                </div>
               </div>
-              <button type="submit" className="submit-button">
+              <button type="submit" className="button submit-button">
                 Submit Report
               </button>
             </form>
-            <button className="close-button" onClick={() => setShowReportForm(false)}>
+            <br />
+            <button className="button close-button" onClick={() => setShowReportForm(false)}>
               Close
             </button>
           </div>

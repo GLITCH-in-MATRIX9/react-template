@@ -1,51 +1,70 @@
-/* src/Report.css */
+/* src/App.css */
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #00ffcc;
+}
+
 .report-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  color: #00ffcc;
-  font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.report-heading {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(to bottom, rgba(4, 8, 19, 0.225), rgba(4, 8, 19, 0.9));
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  text-align: center;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
+  z-index: 1; /* Ensure it doesn't overlap the navbar */
 }
 
-.button-container {
+.home-heading {
+  font-size: 6rem; /* Increased font size */
+  margin-bottom: 0rem;
+  color: #fff;
+  font-weight: 900; /* Bolder font weight */
+  background: linear-gradient(90deg, #fff, #ffffff); /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.436), 0 0 20px rgba(1, 52, 255, 0.363); /* Glowing effect */
+  animation: slideIn 1s ease-in-out; /* Slide-in animation */
+}
+
+.hero-heading {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+.hero-buttons {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
 }
 
-.animated-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-  
-}
-
-.animated-button:hover {
-  /* background-color: #00ffcc;
-  color: #1a1a1a;
-  box-shadow: 0 0 15px #00ffcc;
-  transform: scale(1.1); */
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
-}
-
+/* DAO Voting Section */
 .dao-voting-section {
   width: 80%;
   margin-top: 2rem;
+  padding: 2rem 0;
 }
 
 .report-table {
@@ -57,33 +76,53 @@
 .report-table th,
 .report-table td {
   padding: 0.75rem;
-  border: 1px solid #00ffcc;
+  border: 1px solid #e4fbf6;
 }
 
 .report-table th {
   background-color: #262626;
 }
 
-.vote-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-  
+/* Buttons */
+.button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
 }
 
-.vote-button:hover {
-  /* background-color: #00ffcc;
-  color: #1a1a1a; */
+.button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
 }
 
+.vote-button {
+  padding: 0.5rem 1rem;
+}
+
+.popup-button.yes {
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /*  for Yes */
+}
+
+.popup-button.no {
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /*for No */
+}
+
+.close-button {
+  background: linear-gradient(90deg, #ff6b6b, #ff4757); /* Red gradient for Close */
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Popup Styles */
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -112,52 +151,7 @@
   margin-top: 1rem;
 }
 
-.popup-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-}
-
-.popup-button:hover {
-  /* background-color: #00ffcc;
-  /* color: #1a1a1a; */
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
-
-} 
-
-.popup-button.yes:hover {
-  background-color: green;
-}
-
-.popup-button.no:hover {
-  background-color: red;
-}
-
-.close-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-  
-}
-
-.close-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
-}
-
+/* Form Styles */
 .form-group {
   margin-bottom: 1rem;
   text-align: left;
@@ -172,26 +166,47 @@
 .form-group textarea {
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid #00ffcc;
+  border: 2px solid #4f5957;
   border-radius: 5px;
   background-color: #262626;
-  color: #00ffcc;
+  color: #4b5c59;
 }
 
-.submit-button {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-  
+/* Custom File Input */
+.custom-file-input {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
-.submit-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+.custom-file-input input[type="file"] {
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-file-input label {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 2px solid #4f5957;
+  border-radius: 5px;
+  background-color: #262626;
+  color: #4b5c59;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.custom-file-input label:hover {
+  background-color: #4f5957;
+  color: #fff;
+}
+
+.custom-file-input .file-name {
+  margin-top: 0.5rem;
+  font-weight: bold; /* Bold text for "No file chosen" */
+  color: #4b5c59;
 }
