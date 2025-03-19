@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';
+import './Styles/Home.css';
 
 function Home() {
   // Number of floating logos and squares

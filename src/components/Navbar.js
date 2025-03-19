@@ -23,10 +23,14 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/report" activeClassName="active">Report</NavLink>
+        </li>
+        <li>
           <NavLink to="/contact" activeClassName="active">
-            Reports
+            Contact
           </NavLink>
         </li>
+        
       </ul>
 
       {/* Right Section: Sign In / Sign Up Buttons */}

@@ -1,8 +1,11 @@
 /* Navbar Styles */
 .navbar {
-  background: rgba(4, 8, 19, 0.9) !important; /* Force dark background */
-  backdrop-filter: blur(10px) !important; /* Glassmorphism effect */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; /* Glassmorphism border */
+  background: rgba(4, 8, 19, 0.9) !important;
+  /* Force dark background */
+  backdrop-filter: blur(10px) !important;
+  /* Glassmorphism effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  /* Glassmorphism border */
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -11,119 +14,128 @@
   top: 0;
   z-index: 1000;
 }
-  
-  /* Left Section: Logo and App Name */
-  .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .navbar-logo {
-    height: 40px; /* Adjust logo size */
-    width: auto;
-  }
-  
-  .app-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  /* Middle Section: Navigation Links */
-  .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-links li {
-    margin: 0;
-  }
-  
-  .navbar-links li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .navbar-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient underline */
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-  }
-  
-  .navbar-links li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  
-  .navbar-links li a:hover {
-    color: #4c6ef5; /* Neon color on hover */
-  }
-  
-  .navbar-links li a.active {
-    color: #4c6ef5; /* Active link color */
-    background: rgba(76, 110, 245, 0.1); /* Semi-transparent background for active link */
-    border-radius: 8px;
-  }
-  
-  .navbar-links li a.active::after {
-    transform: scaleX(1); /* Show underline for active link */
-  }
-  
-  /* Right Section: Sign In / Sign Up Buttons */
-  .navbar-right {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .signin-button,
-  .signup-button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .signin-button {
-    background: transparent;
-    color: #4c6ef5;
-    border: 2px solid #4c6ef5;
-  }
-  
-  .signin-button:hover {
-    background: #4c6ef5;
-    color: white;
-  }
-  
-  .signup-button {
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient button */
-    color: white;
-    border: none;
-  }
-  
-  .signup-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4); /* Neon glow on hover */
-  }
+
+/* Left Section: Logo and App Name */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-logo {
+  height: 40px;
+  /* Adjust logo size */
+  width: auto;
+}
+
+.app-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #4c6ef5, #c757ff);
+  /* Gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Middle Section: Navigation Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4c6ef5, #c757ff);
+  /* Gradient underline */
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar-links li a:hover {
+  color: #4c6ef5;
+  /* Neon color on hover */
+}
+
+.navbar-links li a.active {
+  color: #4c6ef5;
+  /* Active link color */
+  background: rgba(76, 110, 245, 0.1);
+  /* Semi-transparent background for active link */
+  border-radius: 8px;
+}
+
+.navbar-links li a.active::after {
+  transform: scaleX(1);
+  /* Show underline for active link */
+}
+
+/* Right Section: Sign In / Sign Up Buttons */
+.navbar-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.signin-button,
+.signup-button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signin-button {
+  background: transparent;
+  color: #4c6ef5;
+  border: 2px solid #4c6ef5;
+}
+
+.signin-button:hover {
+  background: #4c6ef5;
+  color: white;
+}
+
+.signup-button {
+  background: linear-gradient(90deg, #4c6ef5, #c757ff);
+  /* Gradient button */
+  color: white;
+  border: none;
+}
+
+.signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+  /* Neon glow on hover */
+}
