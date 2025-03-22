@@ -1,45 +1,77 @@
 /* Footer Styles */
 .footer {
-    background: rgba(4, 8, 19, 0.9); /* Same as navbar background */
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-    padding: 1rem 2rem; /* Adjust padding as needed */
-    position: fixed; /* Fixed at the bottom */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Ensure it's above other content */
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px; /* Adjust as needed */
-  }
-  
-  .footer p {
-    margin: 0;
-    font-size: 1rem;
-    color: #fff;
-  }
-  
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .footer-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-links a:hover {
-    color: #4c6ef5; /* Highlight color on hover */
-  }
+  background: rgba(12, 27, 71, 0.8); /* Dark blue with transparency */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  padding: 1rem 2rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SWlogo{
+  width : 25px;
+}
+
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-icon {
+  font-size: 1.5rem;
+  color: #4c6ef5; /* Ethereum blue */
+}
+
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  font-family: 'Courier New', monospace; /* Futuristic font */
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  font-family: 'Courier New', monospace; /* Futuristic font */
+}
+
+.footer-links a:hover {
+  color: #4c6ef5; /* Highlight color on hover */
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #4c6ef5; /* Ethereum blue on hover */
+}
