@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-bg: #0a0c10; /* Dark background for Web3 vibe */
+  --feature-bg: #1a1d24; /* Darker card background */
+  --text-dark: #ffffff; /* White text for contrast */
+  --text-light: #a0aec0; /* Light gray for secondary text */
+  --border-radius: 14px; /* Rounded corners */
+  --neon-blue: #00d1ff; /* Neon blue for accents */
+  --neon-purple: #8a2be2; /* Neon purple for accents */
+  --glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); /* Glow effect */
+}
+
+body {
+  background: #0509143f !important;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  /* color: var(--text-dark); */
+}
+
+/* Background Gradient */
+.background-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0c10, #1a1d24, #2a2e35);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glowing Grid */
+/* .glowing-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 49.5%, rgba(255, 255, 255, 0.3) 49.5%, rgba(255, 255, 255, 0.3) 50.5%, transparent 50.5%),
+              linear-gradient(45deg, transparent 49.5%, rgba(255, 255, 255, 0.3) 49.5%, rgba(255, 255, 255, 0.3) 50.5%, transparent 50.5%);
+  background-size: 40px 40px;
+  animation: gridAnimation 10s linear infinite;
+  z-index: -1;
+} */
+
+@keyframes gridAnimation {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-40px) translateX(-40px);
+  }
+}
+
+/* Particle Effects */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: #050914;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%; /* Ensure particles are perfectly circular */
+  opacity: 0.8; /* Adjust opacity for visibility */
+  animation: particleAnimation 5s infinite ease-in-out;
+}
+
+@keyframes particleAnimation {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.8; /* Adjust opacity for a smoother effect */
+  }
+  50% {
+    transform: translateY(-20px) translateX(20px);
+    opacity: 0.6; /* Adjust opacity for a smoother effect */
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.8; /* Adjust opacity for a smoother effect */
+  }
+}
+
+/* Features Heading */
+.features-heading {
+  text-align: center;
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 2rem 0;
+}
+
+.features-heading h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Features Grid */
+.features-grid {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Slightly taller to accommodate the larger circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Circular Path Container */
+.circular-path {
+  position: relative;
+  width: 500px; /* Slightly larger circle to accommodate 8 logos */
+  height: 500px; /* Slightly larger circle to accommodate 8 logos */
+  border: 2px solid var(--neon-blue); /* Circular line */
+  border-radius: 50%; /* Make it a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circular-path::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  backdrop-filter: blur(5px); /* Add blur effect */
+  border-radius: 50%; /* Match the circle's shape */
+  z-index: -1; /* Place the blur behind the circle */
+}
+
+/* Logo Positioning */
+.feature-logo {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--feature-bg);
+  border: 2px solid var(--neon-blue);
+  border-radius: 50%; /* Make it a circle */
+  width: 80px; /* Smaller logos */
+  height: 80px; /* Smaller logos */
+  cursor: pointer;
+  z-index: 2; /* Ensure logos are above the circular line */
+}
+
+.feature-logo img {
+  width: 60%; /* Adjust logo size inside the circle */
+  filter: drop-shadow(var(--glow)); /* Add glow effect to the logo */
+}
+
+/* Circular Path Positioning */
+.feature-logo:nth-child(1) { top: 0%; left: 50%; transform: translateX(-50%) translateY(-50%); } /*Top*/
+.feature-logo:nth-child(2) { top: 15%; left: 85%; transform: translateX(-50%) translateY(-50%); } /* Top-right */
+.feature-logo:nth-child(3) { top: 50%; left: 100%; transform: translateX(-50%) translateY(-50%); } /* Right */
+.feature-logo:nth-child(4) { top: 85%; left: 85%; transform: translateX(-50%) translateY(-50%); } /* Bottom-right */
+.feature-logo:nth-child(5) { top: 100%; left: 50%; transform: translateX(-50%) translateY(-50%); } /* Bottom */
+.feature-logo:nth-child(6) { top: 85%; left: 15%; transform: translateX(-50%) translateY(-50%); } /* Bottom-left */
+.feature-logo:nth-child(7) { top: 50%; left: 0; transform: translateX(-50%) translateY(-50%); } /* Left */
+.feature-logo:nth-child(8) { top: 15%; left: 15%; transform: translateX(-50%) translateY(-50%); } /* Top-left */
+
+/* Text inside the circle */
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the text */
+  font-size: 2.1rem;
+  font-weight: 600;
+  text-align: center;
+  z-index: 1;
+
+  /* Gradient text color */
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Standard property */
+  color: transparent; /* Make the text color transparent to show the gradient */
+}
+
+/* Feature Popup */
+.feature-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  backdrop-filter: blur(2px); /* Blur effect for the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #050914;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 500px;
+  text-align: center;
+  border:2px solid #b3b0b0;
+  /*box-shadow: var(--glow);  */
+}
+
+.popup-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.popup-content p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+/* Feature Image in Popup */
+.popup-content .feature-image {
+  width: 100%; /* Adjust image size */
+  max-width: 300px; /* Limit maximum width */
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: var(--border-radius);
+  /* border: 2px solid var(--neon-blue); */
+  /* box-shadow: var(--glow); */
+}
+
+.popup-content button {
+  background: #db372e;
+  color: var(--text-dark);
+  font-weight: bold;
+  border: none;
+  margin-top:1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.popup-content button:hover {
+  background: var(--neon-purple);
+}
