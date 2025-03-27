@@ -9,26 +9,26 @@ function Report() {
   const [showDetailsPopup, setShowDetailsPopup] = useState(false);
   const [selectedDetails, setSelectedDetails] = useState('');
   const [reports, setReports] = useState([
-    { 
-      id: 1, 
-      submittedBy: 'User1', 
-      votes: 10, 
-      status: 'Open', 
-      details: 'This user harassed me by using offensive words on LinkedIn. It affected my mental health and led to self-doubt.' 
+    {
+      id: 1,
+      submittedBy: 'User1',
+      votes: 10,
+      status: 'Open',
+      details: 'This user harassed me by using offensive words on LinkedIn. It affected my mental health and led to self-doubt.'
     },
-    { 
-      id: 2, 
-      submittedBy: 'User2', 
-      votes: 5, 
-      status: 'Open', 
-      details: 'I received many toxic comments on my Instagram post, which made me feel insecure and anxious.' 
+    {
+      id: 2,
+      submittedBy: 'User2',
+      votes: 5,
+      status: 'Open',
+      details: 'I received many toxic comments on my Instagram post, which made me feel insecure and anxious.'
     },
-    { 
-      id: 3, 
-      submittedBy: 'User3', 
-      votes: 15, 
-      status: 'Closed', 
-      details: 'Someone sent me threatening messages on Twitter, and it made me fear for my safety.' 
+    {
+      id: 3,
+      submittedBy: 'User3',
+      votes: 15,
+      status: 'Closed',
+      details: 'Someone sent me threatening messages on Twitter, and it made me fear for my safety.'
     },
   ]);
 
