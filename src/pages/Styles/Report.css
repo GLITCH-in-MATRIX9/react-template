@@ -1,4 +1,4 @@
-/* src/App.css */
+/* src/Styles/Report.css */
 
 /* Global Styles */
 body {
@@ -71,6 +71,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background for the table */
 }
 
 .report-table th,
@@ -105,12 +106,17 @@ body {
   padding: 0.5rem 1rem;
 }
 
+.details-button {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient for Details button */
+}
+
 .popup-button.yes {
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /*  for Yes */
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient for Yes */
 }
 
 .popup-button.no {
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /*for No */
+  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient for No */
 }
 
 .close-button {
@@ -142,6 +148,22 @@ body {
   border-radius: 10px;
   width: 400px;
   text-align: center;
+  position: relative;
+}
+
+.close-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #00ffcc;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  color: #ff4757;
 }
 
 .popup-buttons {
