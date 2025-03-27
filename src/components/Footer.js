@@ -1,5 +1,5 @@
 import "./Footer.css";
-import { FaEthereum, FaTwitter, FaDiscord } from "react-icons/fa"; // Icons for Web3 style
+import { FaTwitter, FaDiscord } from "react-icons/fa"; // Icons for Web3 style
 
 function Footer() {
   return (
@@ -8,13 +8,11 @@ function Footer() {
         {/* Web3 Branding */}
         <div className="footer-brand">
           <img className="SWlogo" src="./SafeWebLOGO.png" alt="safeweb logo"></img>
-          <p>&copy; 2025 My React App. All rights reserved.</p>
+          <p>&copy; 2025 SafeWeb. All rights reserved.</p>
         </div>
 
         {/* Footer Links */}
         <div className="footer-links">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
         </div>
 
         {/* Social Links */}

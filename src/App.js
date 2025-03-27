@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Report from "./pages/Report";
 import Contact from "./pages/Contact";
+import Features from "./pages/Features";
 import SignIn from "./pages/SignIn"; // Import SignIn page
 import SignUp from "./pages/SignUp"; // Import SignUp page
 import "./App.css";
@@ -60,9 +61,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/report" element={<Report />} />
-            <Route path="/signin" element={<SignIn />} /> {/* Add SignIn route */}
-            <Route path="/signup" element={<SignUp />} /> {/* Add SignUp route */}
+            <Route path="/features" element={<Features />} />
+            <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/report" element={<Report />} />
           </Routes>
         </main>
         <Footer />
