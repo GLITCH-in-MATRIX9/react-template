@@ -6,10 +6,30 @@ function Report() {
   const [showReportForm, setShowReportForm] = useState(false);
   const [showVotePopup, setShowVotePopup] = useState(false);
   const [selectedReportId, setSelectedReportId] = useState(null);
+  const [showDetailsPopup, setShowDetailsPopup] = useState(false);
+  const [selectedDetails, setSelectedDetails] = useState('');
   const [reports, setReports] = useState([
-    { id: 1, submittedBy: 'User1', votes: 10, status: 'Open' },
-    { id: 2, submittedBy: 'User2', votes: 5, status: 'Open' },
-    { id: 3, submittedBy: 'User3', votes: 15, status: 'Closed' },
+    {
+      id: 1,
+      submittedBy: 'User1',
+      votes: 10,
+      status: 'Open',
+      details: 'This user harassed me by using offensive words on LinkedIn. It affected my mental health and led to self-doubt.'
+    },
+    {
+      id: 2,
+      submittedBy: 'User2',
+      votes: 5,
+      status: 'Open',
+      details: 'I received many toxic comments on my Instagram post, which made me feel insecure and anxious.'
+    },
+    {
+      id: 3,
+      submittedBy: 'User3',
+      votes: 15,
+      status: 'Closed',
+      details: 'Someone sent me threatening messages on Twitter, and it made me fear for my safety.'
+    },
   ]);
 
   // Handle report submission
@@ -28,6 +48,12 @@ function Report() {
     );
     setReports(updatedReports);
     setShowVotePopup(false);
+  };
+
+  // Handle viewing report details
+  const handleViewDetails = (details) => {
+    setSelectedDetails(details);
+    setShowDetailsPopup(true);
   };
 
   return (
@@ -56,6 +82,7 @@ function Report() {
               <th>Votes</th>
               <th>Status</th>
               <th>Action</th>
+              <th>Details</th> {/* New column for View Details */}
             </tr>
           </thead>
           <tbody>
@@ -77,6 +104,14 @@ function Report() {
                       Vote Now
                     </button>
                   )}
+                </td>
+                <td>
+                  <button
+                    className="button details-button"
+                    onClick={() => handleViewDetails(report.details)}
+                  >
+                    View Details
+                  </button>
                 </td>
               </tr>
             ))}
@@ -105,6 +140,19 @@ function Report() {
         </div>
       )}
 
+      {/* Popup for Report Details */}
+      {showDetailsPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <button className="close-icon" onClick={() => setShowDetailsPopup(false)}>
+              ×
+            </button>
+            <h3>Report Details</h3>
+            <p>{selectedDetails}</p>
+          </div>
+        </div>
+      )}
+
       {/* Popup Form for Submitting Report */}
       {showReportForm && (
         <div className="popup-overlay">
@@ -126,10 +174,6 @@ function Report() {
                 <label>Username of the harasser:</label>
                 <input type="text" placeholder="Enter username" required />
               </div>
-              {/* <div className="form-group">
-                <label>Upload Screenshot:</label>
-                <input type="file" accept="image/*" />
-              </div> */}
               <div className="form-group">
                 <label>Upload Screenshot:</label>
                 <div className="custom-file-input">
