@@ -1,15 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import Report from "./pages/Report";
+import Contact from "./pages/Contact";
+import Features from "./pages/Features";
+import SignIn from "./pages/SignIn"; // Import SignIn page
+import SignUp from "./pages/SignUp"; // Import SignUp page
 import "./App.css";
 
 function App() {
-  // Number of floating logos and squares
+
   const numberOfLogos = 7; // Reduced number of logos
   const numberOfSquares = 11; // Reduced number of squares
 
@@ -42,36 +44,27 @@ function App() {
         style={{ top, left, backgroundColor: randomColor }}
       ></div>
     );
-  });
-
-
-
-
-
-
+  });  
 
   return (
-    
-
-    
     <Router>
-
-    
-      {/* Floating Objects */}
-      
       <div className="App">
-      <div className="floating-objects">
-        {floatingLogos}
-        {floatingSquares}
-      </div>
-        {/* <Header /> */}
+        {/* floating objects */}
+        <div className="floating-objects">
+         {floatingLogos}
+         {floatingSquares}
+        </div>
+
         <Navbar />
         <main className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/report" element={<Report />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/report" element={<Report />} />
           </Routes>
         </main>
         <Footer />
@@ -79,6 +72,5 @@ function App() {
     </Router>
   );
 };
-
 
 export default App;

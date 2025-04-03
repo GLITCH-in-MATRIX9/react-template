@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import './Navbar.css'; // Ensure the CSS file is imported
+import './Navbar.css';
 
 function Navbar() {
   return (
     <nav className="navbar">
       {/* Left Section: Logo and App Name */}
       <div className="navbar-left">
-        <img src="/SafeWebLOGO.png" alt="Safe Web Logo" className="navbar-logo" /> {/* Logo */}
-        <span className="app-name">Safe Web</span> {/* App Name */}
+        <img src="/SafeWebLOGO.png" alt="Safe Web Logo" className="navbar-logo" />
+        <span className="app-name">Safe Web</span>
       </div>
 
       {/* Middle Section: Navigation Links */}
@@ -18,7 +18,7 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/about" activeClassName="active">
+          <NavLink to="/features" activeClassName="active">
             Features
           </NavLink>
         </li>
@@ -30,13 +30,16 @@ function Navbar() {
             Contact
           </NavLink>
         </li>
-        
       </ul>
 
       {/* Right Section: Sign In / Sign Up Buttons */}
       <div className="navbar-right">
-        <button className="signin-button">Sign In</button> {/* Sign In Button */}
-        <button className="signup-button">Sign Up</button> {/* Sign Up Button */}
+        <NavLink to="/signin" className="signin-button">
+          Sign In
+        </NavLink>
+        <NavLink to="/signup" className="signup-button">
+          Sign Up
+        </NavLink>
       </div>
     </nav>
   );
