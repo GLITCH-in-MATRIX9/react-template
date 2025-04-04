@@ -1,3 +1,4 @@
+process.env.NODE_OPTIONS = '--tls-min-v1.3'; // Forces TLS 1.3 (most secure)
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
