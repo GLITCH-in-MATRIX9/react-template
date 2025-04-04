@@ -1,414 +1,478 @@
-/* Global Styles */
-body {
-  background: #050914;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif; /* Modern, futuristic font */
-  color: #fff;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Home.css */
+.home-page {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
 }
 
-/* Home Container */
-.home-container {
-  background: linear-gradient(to bottom, rgba(4, 8, 19, 0.225), rgba(4, 8, 19, 0.9));
+/* Full-width Hero Section */
+.hero-section {
+  width: 100%;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
-  border-radius: 1rem;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for better text contrast */
+  padding: 2rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.highlight {
+  background: linear-gradient(
+    90deg,
+    #718bfe,
+    #3240d8,
+    #5b79ff
+  );
+  background-size: 200% auto;
+  color: transparent;
+  font-weight: 600;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 8px rgba(67, 101, 255, 0.474);
+  animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+/* Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-button, .secondary-button {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary-button {
+  background-color: #4a6bff;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 14px rgba(74, 107, 255, 0.3);
+}
+
+.primary-button:hover {
+  background-color: #3a5bef;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4);
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.secondary-button:hover {
+  background-color: rgba(74, 107, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.primary-button.large {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 75vh;
-  text-align: center;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
-  z-index: 1; /* Ensure it doesn't overlap the navbar */
+  color: white;
+  font-size: 0.9rem;
+  animation: bounce 2s infinite;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
+.arrow-down {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg);
+  margin-top: 0.5rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
   }
-}
-
-.home-container h1 {
-  font-size: 6rem; /* Increased font size */
-  margin-bottom: 0rem;
-  color: #fff;
-  font-weight: 900; /* Bolder font weight */
-  background: linear-gradient(90deg, #fff, #ffffff); /* Gradient text */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.436), 0 0 20px rgba(1, 52, 255, 0.363); /* Glowing effect */
-  animation: slideIn 1s ease-in-out; /* Slide-in animation */
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+  40% {
+    transform: translateY(-10px);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  60% {
+    transform: translateY(-5px);
   }
 }
 
-.home-container p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
-  animation: fadeIn 2s ease-in-out; /* Fade-in animation */
-}
-
-.buttons {
-  display: flex;
-  gap: 1.5rem;
-  animation: fadeIn 2.5s ease-in-out; /* Fade-in animation */
-}
-
-button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient buttons */
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
-}
-
-.secondary {
-  background: transparent;
-  color: #4c6ef5;
-  border: 2px solid #4c6ef5;
-}
-
-.secondary:hover {
-  background: #4c6ef5;
-  color: white;
-}
-
-/* Real Stories, Real Impact Section */
-.stories-container {
-  padding: 6rem 2rem;
-  background: linear-gradient(to bottom, rgba(4, 8, 19, 0.225), rgba(4, 8, 19, 0.9));
-  border-radius: 1rem;
+/* Section Styles */
+.section-header {
   text-align: center;
-  color: #fff;
-  margin: 4rem 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
 }
 
-.stories-container h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slideIn 1s ease-in-out; /* Slide-in animation */
+.section-header h2 {
+  font-family: "roboto", sans-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
 }
 
-.stories-container p {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
-  animation: fadeIn 2s ease-in-out; /* Fade-in animation */
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #a9a9a9;
 }
 
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  animation: fadeIn 2.5s ease-in-out; /* Fade-in animation */
+/* Features Section */
+.features-section {
+  padding: 6rem 2rem;
+  background-color: rgb(0, 0, 0);
+}
+
+.features-grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .feature-card {
-  background: rgba(4, 1, 16, 0.6); /* Semi-transparent background */
-  border-radius: 20px;
-  width: 350px;
+  background: linear-gradient(
+    135deg,
+    rgba(27, 27, 27, 0.1) 0%,
+    rgba(77, 77, 77, 0.223) 100%
+  );
+  border-radius: 12px;
   padding: 2rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(76, 110, 245, 0.5); /* Neon glow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-.feature-image {
-  width: 100%;
-  height: 200px;
-  border-radius: 15px;
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(74, 107, 255, 0.1);
+  border-radius: 50%;
+}
+
+.feature-icon img {
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  margin-bottom: 1.5rem;
+  border-radius: 50%;
 }
 
 .feature-card h3 {
-  font-size: 1.75rem;
-  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
   margin-bottom: 1rem;
-  font-weight: 600;
+  color: #ffffff;
 }
 
 .feature-card p {
-  font-size: 1.1rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
+  font-weight: 400;
+  color: #c2c2c2;
 }
 
-/* Using Safe Web is Simple & Effective Section */
-.steps-container {
-  padding: 6rem 2rem;
-  background: linear-gradient(to bottom, rgba(4, 8, 19, 0.9), rgba(4, 8, 19, 0.225)), url("/public/earth.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 1rem;
+/* Steps Section */
+.steps-section {
+  padding: 12rem 2rem;
+  background: 
+    /* Semi-dark overlay with 90% opacity */
+    /* Background image */
+    linear-gradient(rgba(0, 0, 0, 0.814), rgba(0, 0, 0, 0.151)),
+    url("background.png") center/cover no-repeat;
+}
+
+.steps-section-box {
+  color: #ffffff;
+  background: rgb(65, 65, 65);
+  padding: 10px 0px; /* Reduced padding */
+  border-radius: 40px; /* Slightly smaller radius */
+  margin: 15px auto; /* Centered with smaller margin */
   text-align: center;
-  color: #fff;
-  margin: 4rem 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
+  position: relative;
+  overflow: hidden;
+  max-width: 100px; /* Constrained width */
+  width: 90%; /* Flexible within max-width */
 }
 
-.steps-container h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slideIn 1s ease-in-out; /* Slide-in animation */
+/* Blockchain indicator (simplified) */
+.steps-section-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px; /* Thinner indicator */
+  height: 100%;
 }
 
-.steps-container p {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
-  animation: fadeIn 2s ease-in-out; /* Fade-in animation */
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .steps-section-box {
+    padding: 15px 20px;
+    max-width: 300px;
+    border-radius: 10px;
+  }
 }
 
-.steps {
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .steps-section {
+    padding: 4rem 1rem;
+    background-attachment: scroll;
+  }
+}
+
+.steps-container {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  animation: fadeIn 2.5s ease-in-out; /* Fade-in animation */
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+.steps-container::before {
+  content: "";
+  position: absolute;
+  left: 36px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+
 }
 
 .step {
-  text-align: center;
-  max-width: 300px;
-  background: rgba(4, 8, 19, 0.6); /* Semi-transparent background */
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  transition: all 0.3s ease;
-}
-
-.step:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(76, 110, 245, 0.5); /* Neon glow on hover */
-}
-
-.step-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  display: block;
-  color: #4c6ef5; /* Neon color for icons */
-}
-
-.step h3 {
-  font-size: 1.75rem;
-  color: #fff;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.step p {
-  font-size: 1.1rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
-}
-
-/* Why Choose Safe Web Section */
-.why-choose-container {
-  padding: 6rem 2rem;
-  background: linear-gradient(to bottom, rgba(4, 8, 19, 0.9), rgba(4, 8, 19, 0.225));
-  border-radius: 1rem;
-  text-align: center;
-  color: #fff;
-  margin: 4rem 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation */
-}
-
-.why-choose-container h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slideIn 1s ease-in-out; /* Slide-in animation */
-}
-
-.why-choose-container p {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: rgb(204, 202, 202);
-  line-height: 1.6;
-  animation: fadeIn 2s ease-in-out; /* Fade-in animation */
-}
-
-.reasons {
   display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  min-width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4a6bff 0%, #3a4bcc 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  animation: fadeIn 2.5s ease-in-out; /* Fade-in animation */
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(74, 107, 255, 0.5);
 }
 
-.reason-card {
-  background: rgba(4, 8, 19, 0.6); /* Semi-transparent background */
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  transition: all 0.5s ease;
-  max-width: 300px;
-  animation: funkyAnimation 5s infinite ease-in-out; /* Funky animation */
+.step-content {
+  background: rgba(33, 33, 33, 0.232);
+  border: 1px solid rgba(74, 107, 255, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex-grow: 1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.reason-card:hover {
-  transform: scale(1.1) rotate(5deg); /* Scale and rotate on hover */
-  box-shadow: 0 15px 30px rgba(76, 110, 245, 0.5); /* Neon glow on hover */
-}
-
-.reason-card h3 {
-  font-size: 1.75rem;
-  color: #fff;
-  margin-bottom: 1rem;
+.step-content h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
-.reason-card p {
-  font-size: 1.1rem;
-  color: rgb(204, 202, 202);
+.step-content p {
+  color: #a0a8c0;
   line-height: 1.6;
 }
 
-/* Funky Animation for cards*/
-@keyframes funkyAnimation {
-  0% {
-    transform: translateY(0) rotate(0) scale(1);
-    background: rgba(4, 8, 19, 0.6); /* Initial background color */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .steps-container {
+    padding: 1rem;
+    gap: 1rem;
   }
-  25% {
-    transform: translateY(-10px) rotate(5deg) scale(1.05);
-    background: rgba(76, 110, 245, 0.4); /* Change background color */
+  
+  .steps-container::before {
+    left: 20px;
   }
-  50% {
-    transform: translateY(0) rotate(-5deg) scale(1);
-    background: rgba(199, 87, 255, 0.4); /* Change background color */
+  
+  .step {
+    gap: 1rem;
   }
-  75% {
-    transform: translateY(-10px) rotate(5deg) scale(1.05);
-    background: rgba(76, 110, 245, 0.4); /* Change background color */
+  
+  .step-number {
+    min-width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
-  100% {
-    transform: translateY(0) rotate(0) scale(1);
-    background: rgba(4, 8, 19, 0.6); /* Return to initial background color */
+  
+  .step-content {
+    padding: 1rem;
   }
 }
 
-/* Floating Objects */
-.floating-objects {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Ensure objects don't interfere with clicks */
-  z-index: -1; /* Place behind other content */
+/* Testimonials Section */
+.testimonials-section {
+  padding: 6rem 2rem;
+  background-color: black;
 }
 
-/* Floating Logos */
-.floating-object.logo {
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: #f9faff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.quote-icon {
+  font-size: 3rem;
+  color: rgba(74, 107, 255, 0.1);
   position: absolute;
-  background: none; /* No background for logos */
-  border-radius: 50%; /* Circular shape */
-  animation: float 10s infinite ease-in-out; /* Floating animation */
-  box-shadow: none; /* No glow effect for logos */
-  width: 96px; /* 80px * 1.2 */
-  height: 96px; /* 80px * 1.2 */
+  top: 1rem;
+  right: 1.5rem;
+  line-height: 1;
 }
 
-.floating-object.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ensure the logo fits perfectly */
+.testimonial-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
-/* Floating Squares */
-.floating-object.square {
-  position: absolute;
-  background: rgba(76, 110, 245, 0.4); /* Semi-transparent blue */
-  border-radius: 10px; /* Square shape */
-  animation: float 8s infinite ease-in-out; /* Floating animation */
-  width: 40px; /* Small size */
-  height: 40px; /* Small size */
-  box-shadow: 0 0 10px rgba(76, 110, 245, 0.6); /* Glow effect */
+.user-info {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Floating Animation */
-@keyframes float {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0);
+.user-name {
+  font-weight: 600;
+  color: #222;
+}
+
+.user-role {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.2rem;
   }
-  25% {
-    transform: translateY(-20px) translateX(20px) rotate(90deg);
+  
+  .hero-content {
+    padding: 2rem;
   }
-  50% {
-    transform: translateY(20px) translateX(-20px) rotate(180deg);
+  
+  .subtitle {
+    font-size: 1.1rem;
   }
-  75% {
-    transform: translateY(-20px) translateX(20px) rotate(270deg);
+  
+  .section-header h2 {
+    font-size: 2rem;
   }
-  100% {
-    transform: translateY(0) translateX(0) rotate(360deg);
+  
+  
+  .primary-button, .secondary-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .feature-card, .testimonial-card {
+    padding: 1.5rem;
   }
 }

@@ -1,11 +1,9 @@
-/* Navbar Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Navbar Base Styles */
 .navbar {
-  background: rgba(4, 8, 19, 0.9) !important;
-  /* Force dark background */
-  backdrop-filter: blur(10px) !important;
-  /* Glassmorphism effect */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  /* Glassmorphism border */
+  background: rgb(0, 0, 0);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -13,120 +11,339 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  font-family: "Roboto", sans-serif;
 }
-  
-  /* Left Section: Logo and App Name */
-  .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .navbar-logo {
-    height: 40px; /* Adjust logo size */
-    width: auto;
-  }
-  
-  .app-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  /* Middle Section: Navigation Links */
+
+/* Left Section: Logo and App Name */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.app-name {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #fff;
+  background: linear-gradient(90deg, #fff, #4c6ef5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Middle Section: Navigation Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar-links li a:hover {
+  color: #4c6ef5;
+}
+
+.navbar-links li a.active {
+  color: #7a95ff;
+}
+
+.navbar-links li a.active::after {
+  transform: scaleX(1);
+}
+
+/* Right Section: Auth Buttons */
+.navbar-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.signin-button,
+.signup-button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.signin-button {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.signin-button:hover {
+  background: #4c6ef5;
+  color: white;
+}
+
+.signup-button {
+  background: #486cff;
+  color: white !important;
+}
+
+.signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Mobile Auth Buttons */
+.mobile-auth-buttons {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  align-items: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
   .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-links li {
-    margin: 0;
-  }
-  
-  .navbar-links li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .navbar-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient underline */
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-  }
-  
-  .navbar-links li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  
-  .navbar-links li a:hover {
-    color: #4c6ef5; /* Neon color on hover */
-  }
-  
-  .navbar-links li a.active {
-    color: #4c6ef5; /* Active link color */
-    background: rgba(76, 110, 245, 0.1); /* Semi-transparent background for active link */
-    border-radius: 8px;
-  }
-  
-  .navbar-links li a.active::after {
-    transform: scaleX(1); /* Show underline for active link */
-  }
-  
-  /* Right Section: Sign In / Sign Up Buttons */
-  .navbar-right {
-    display: flex;
     gap: 1rem;
   }
   
   .signin-button,
   .signup-button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+  }
+  
+  .navbar-links.active {
+    transform: translateX(0);
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .navbar-right {
+    display: none;
+  }
+  
+  .navbar-links li a {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+  }
+  
+  .mobile-auth-buttons {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    height: 30px;
+  }
+  
+  .app-name {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-links li a {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+
+
+
+/* profile section */
+/* Navbar.css */
+/* ... (keep your existing navbar styles) ... */
+
+/* Profile Dropdown Styles */
+.profile-container {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.profile-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4a6bff;
+}
+
+.profile-name {
+  color: white;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #1a1a2e;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  margin-top: 5px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: all 0.3s;
+  gap: 10px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(74, 107, 255, 0.1);
+  color: #4a6bff;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #2d2d2d;
+  margin: 8px 0;
+}
+
+.dropdown-item.logout {
+  color: #e74c3c;
+}
+
+.dropdown-item.logout:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Icons (you can use font-awesome or custom icons) */
+.icon-dashboard::before {
+  content: "📊";
+}
+
+.icon-profile::before {
+  content: "👤";
+}
+
+.icon-logout::before {
+  content: "🚪";
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .profile-dropdown {
+    position: static;
+    width: 100%;
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: none;
   }
-  
-  .signin-button {
-    background: transparent;
-    color: #4c6ef5;
-    border: 2px solid #4c6ef5;
+
+  .profile-trigger {
+    justify-content: center;
   }
-  
-  .signin-button:hover {
-    background: #4c6ef5;
-    color: white;
+
+  .profile-name {
+    display: none;
   }
-  
-  .signup-button {
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient button */
-    color: white !important;
-    border: none;
-  }
-  
-  .signup-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4); /* Neon glow on hover */
-  }
+}

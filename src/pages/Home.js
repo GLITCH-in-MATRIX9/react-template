@@ -1,133 +1,191 @@
 import React from 'react';
 import './Styles/Home.css';
+import heroBackground from '../assets/background.jpg'; // Make sure to add this image file
 
 function Home() {
-  // Number of floating logos and squares
-  const numberOfLogos = 7; // Reduced number of logos
-  const numberOfSquares = 11; // Reduced number of squares
-
-  // Generate an array of random positions for the logos
-  const floatingLogos = Array.from({ length: numberOfLogos }, (_, index) => {
-    const top = `${Math.random() * 100}%`; // Random top position
-    const left = `${Math.random() * 100}%`; // Random left position
-    return (
-      <div
-        key={`logo-${index}`}
-        className="floating-object logo"
-        style={{ top, left }}
-      >
-        <img src="/SafeWebLOGO.png" alt="Safe Web Logo" />
-      </div>
-    );
-  });
-
-  // Generate an array of random positions for the squares
-  const floatingSquares = Array.from({ length: numberOfSquares }, (_, index) => {
-    const top = `${Math.random() * 100}%`; // Random top position
-    const left = `${Math.random() * 100}%`; // Random left position
-    const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)}, 0.4)`; // Random color
-    return (
-      <div
-        key={`square-${index}`}
-        className="floating-object square"
-        style={{ top, left, backgroundColor: randomColor }}
-      ></div>
-    );
-  });
-
   return (
-    <div>
-      {/* Floating Objects */}
-      <div className="floating-objects">
-        {floatingLogos}
-        {floatingSquares}
-      </div>
+    <div className="home-page">
+      {/* Full-width Hero Section with Background */}
+      <section
+        className="hero-section"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      >
+        <div className="hero-overlay">
+          <div className="hero-content">
+            <h1>Combat Online Harassment with <span className="highlight">SafeWeb</span></h1>
+            <p className="subtitle">
+              Your digital shield against online abuse. Report harassment safely and help create a more respectful internet.
+            </p>
+            <div className="cta-buttons">
+              <button className="primary-button">
+                Get the Extension <span className="icon">→</span>
+              </button>
+              <button className="secondary-button">
+                Learn More <span className="icon">→</span>
+              </button>
+            </div>
+          </div>
 
-      {/* Rest of your content */}
-      <div className="home-container">
-        <h1>Combat Online Harassment with SafeWeb
-          
-        </h1>
-        <p>
-          Safe Web is your shield against online abuse, providing powerful tools to report harassment and create a more respectful digital environment.
-        </p>
-        <div className="buttons">
-          <button className="primary">Get the Extension</button>
-          <button className="secondary">Learn More</button>
+          <div className="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div className="arrow-down"></div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Other sections */}
-      <div className="stories-container">
-        <h1>Real Stories, Real Impact</h1>
-        <p>
-          Join thousands of users who are making the internet a safer place. Every report contributes to positive change.
-        </p>
-        <div className="features">
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="section-header">
+          <h2>Real Stories, <span className="highlight">Real Impact</span></h2>
+          <p className="section-subtitle">
+            Join thousands of users creating safer online spaces. Every report makes a difference.
+          </p>
+        </div>
+
+        <div className="features-grid2">
           <div className="feature-card">
-            <img src="/anonymity.webp" alt="Anonymity & Security" className="feature-image" />
+            <div className="feature-icon">
+              <img src="/anonymity.webp" alt="Anonymity & Security" />
+            </div>
             <h3>Anonymity & Security</h3>
-            <p>Your identity is protected while reporting. We use advanced encryption to ensure your data is secure.</p>
+            <p>Your identity stays protected with end-to-end encryption while reporting harassment.</p>
           </div>
+
           <div className="feature-card">
-            <img src="/report.jpg" alt="Seamless Reporting" className="feature-image" />
-            <h3>Seamless Reporting</h3>
-            <p>Our intuitive interface makes reporting harassment quick and easy. No technical skills required.</p>
+            <div className="feature-icon">
+              <img src="/report.jpg" alt="Seamless Reporting" />
+            </div>
+            <h3>One-Click Reporting</h3>
+            <p>Our intuitive interface makes reporting quick and effortless for everyone.</p>
           </div>
+
           <div className="feature-card">
-            <img src="/community.jpg" alt="Community Support" className="feature-image" />
+            <div className="feature-icon">
+              <img src="/community.jpg" alt="Community Support" />
+            </div>
             <h3>Community Support</h3>
-            <p>Join a global community of users dedicated to creating a safer online environment.</p>
+            <p>Connect with a global network committed to positive online experiences.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="steps-container">
-        <h1>Using Safe Web is Simple & Effective</h1>
-        <p>
-          Take action against online harassment in three easy steps.
-        </p>
-        <div className="steps">
-          <div className="step">
-            <span role="img" aria-label="Download" className="step-icon">⬇️</span> {/* Icon for Install */}
-            <h3>Install</h3>
-            <p>Add Safe Web to your browser with a single click. It's lightweight and easy to use.</p>
-          </div>
-          <div className="step">
-            <span role="img" aria-label="Flag" className="step-icon">🚩</span> {/* Icon for Report */}
-            <h3>Report</h3>
-            <p>Capture and report online harassment effortlessly. Our AI-powered tools make it simple.</p>
-          </div>
-          <div className="step">
-            <span role="img" aria-label="Chart" className="step-icon">📈</span> {/* Icon for Track Progress */}
-            <h3>Track Progress</h3>
-            <p>Monitor the status of your reports and see the impact of your contributions.</p>
-          </div>
-        </div>
-      </div>
+      {/* How It Works Section */}
+      <section className="steps-section">
+        <p className="steps-section-box">Safety</p>
+        <div className="section-header">
 
-      <div className="why-choose-container">
-        <h1>Why Choose Safe Web?</h1>
-        <p>
-          Safe Web is trusted by millions of users worldwide. Here's why:
-        </p>
-        <div className="reasons">
-          <div className="reason-card">
-            <h3>Advanced AI</h3>
-            <p>Our AI detects and flags harassment with 95% accuracy.</p>
+          <h2>Simple 3-Step Protection</h2>
+          <p className="section-subtitle">
+            Take action against online harassment quickly and effectively.
+          </p>
+        </div>
+
+        <div className="steps-container">
+          <div className="step">
+            <div className="step-number">1</div>
+            <div className="step-content">
+              <h3>Install</h3>
+              <p>Add SafeWeb to your browser in seconds. Lightweight and unobtrusive.</p>
+            </div>
           </div>
-          <div className="reason-card">
-            <h3>24/7 Support</h3>
-            <p>Our support team is available around the clock to assist you.</p>
+
+          <div className="step">
+            <div className="step-number">2</div>
+            <div className="step-content">
+              <h3>Report</h3>
+              <p>Capture harassment with our AI-powered tools. Simple and comprehensive.</p>
+            </div>
           </div>
-          <div className="reason-card">
-            <h3>Global Community</h3>
-            <p>Join a network of users fighting for a safer internet.</p>
+
+          <div className="step">
+            <div className="step-number">3</div>
+            <div className="step-content">
+              <h3>Track</h3>
+              <p>Monitor your reports and see your impact on creating safer spaces.</p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials-section">
+        <div className="section-header">
+          <h2>Trusted by <span className="highlight">IGDTUW</span></h2>
+          <p className="section-subtitle">
+            Here's why users tend to choose SafeWeb
+          </p>
+        </div>
+
+        <div className="testimonials-grid">
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              SafeWeb helped me report cyberbullying I faced on Instagram. The anonymous reporting feature gave me courage to speak up without fear of retaliation.
+            </p>
+            <div className="user-info">
+              <span className="user-name">Avwal Kaur</span>
+              <span className="user-role">CSE Student, IGDTUW</span>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              As the Women's Cell coordinator, SafeWeb has been invaluable in tracking harassment cases on campus forums. The dashboard helps us identify repeat offenders.
+            </p>
+            <div className="user-info">
+              <span className="user-name">Anjali Dass</span>
+              <span className="user-role">CSE student , IGDTUW</span>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              When I received inappropriate LinkedIn messages, SafeWeb's one-click evidence collection made reporting so easy. Now I feel safer networking online.
+            </p>
+            <div className="user-info">
+              <span className="user-name">Anushka Jha</span>
+              <span className="user-role">CSE Student, IGDTUW</span>
+            </div>
+          </div>
+
+          {/* Additional Indian student testimonials */}
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              The AI detection in SafeWeb identified toxic comments in my YouTube videos that I had missed. It's like having a digital bodyguard!
+            </p>
+            <div className="user-info">
+              <span className="user-name">Janvi Behal</span>
+              <span className="user-role">CSE Student, IGDTUW</span>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              After facing casteist slurs on Twitter, SafeWeb's community support connected me with legal resources. The solidarity gave me strength.
+            </p>
+            <div className="user-info">
+              <span className="user-name">Bableen Kaur </span>
+              <span className="user-role">CSE Student</span>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="quote-icon">"</div>
+            <p className="testimonial-text">
+              As an IGDTUW coding club moderator, SafeWeb helps us maintain respectful discussions. The sentiment analysis flags issues before they escalate.
+            </p>
+            <div className="user-info">
+              <span className="user-name">Aabha Bhandari</span>
+              <span className="user-role">CSE Student, IGDTUW</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

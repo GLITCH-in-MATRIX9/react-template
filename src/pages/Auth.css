@@ -1,119 +1,92 @@
-/* Auth Container */
+/* Auth.css */
 .auth-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Glassmorphism border */
-    border-radius: 8px;
-    background: rgba(4, 8, 19, 0.9); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-  
-  .auth-container h2 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .auth-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .auth-container label {
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #fff;
-  }
-  
-  .auth-container input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    color: #fff;
-    font-size: 1rem;
-  }
-  
-  .auth-container input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-  
-  .auth-container button {
-    padding: 10px;
-    background: linear-gradient(90deg, #4c6ef5, #c757ff); /* Gradient button */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .auth-container button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 110, 245, 0.4); /* Neon glow on hover */
-  }
-  
-  .auth-container p {
-    margin-top: 15px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .auth-container a {
-    color: #4c6ef5;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .auth-container a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Google Auth Section
-  .google-auth {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .google-auth p {
-    margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  Google Login Button 
-  .google-login-button {
-    background: #4285f4;  Google blue 
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .google-login-button:hover {
-    background: #357abd;  Darker blue on hover 
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);  Glow effect 
-  }
-  
-  .google-login-button img {
-    width: 20px;
-    height: 20px;
-  } */
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-help {
+  display: block;
+  margin-top: 0.25rem;
+  color: #7f8c8d;
+  font-size: 0.8rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #2980b9;
+}
+
+button[type="submit"]:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.auth-error {
+  color: #e74c3c;
+  background: #fdecea;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #7f8c8d;
+}
+
+.auth-footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
