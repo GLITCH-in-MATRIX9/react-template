@@ -102,6 +102,8 @@ function Navbar() {
                 >
                   <i className="icon-dashboard"></i> Dashboard
                 </NavLink>
+
+                
                 <NavLink 
                   to="/profile" 
                   className="dropdown-item"
@@ -109,6 +111,8 @@ function Navbar() {
                 >
                   <i className="icon-profile"></i> My Profile
                 </NavLink>
+
+              
                 <div className="dropdown-divider"></div>
                 <button 
                   className="dropdown-item logout"
