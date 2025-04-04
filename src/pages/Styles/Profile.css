@@ -1,7 +1,320 @@
-/* Profile.css */
-.profile {
-    padding: 20px;
+/* Web3 Profile Styles */
+
+
+:root {
+  --primary: #496bff;
+  --primary-light: #6d85ff;
+  --dark: #0f0f1a;
+  --darker: #050508;
+  --light: #e0e0e0;
+  --light-gray: #a0a0a0;
+  --twitter: #1DA1F2;
+  --discord: #5865F2;
+  --reddit: #FF5700;
+  --telegram: #0088CC;
+}
+
+.web3-profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--dark);
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+  color: var(--light);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle background effect */
+.bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(73, 107, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(73, 107, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.profile-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 14px;
+  height: 14px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  border: 2px solid var(--dark);
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.wallet-address {
+  font-family: 'Courier New', monospace;
+  color: var(--primary-light);
+  font-size: 0.9rem;
+  background: rgba(73, 107, 255, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(73, 107, 255, 0.2);
+  padding-bottom: 1rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--light-gray);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: rgba(73, 107, 255, 0.1);
+  color: var(--primary-light);
+}
+
+.profile-content {
+  padding: 0 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--light);
+  font-weight: 500;
+}
+
+/* Uniform input fields */
+.uniform-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(20, 20, 40, 0.5);
+  border: 1px solid rgba(73, 107, 255, 0.3);
+  border-radius: 8px;
+  color: var(--light);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.uniform-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(73, 107, 255, 0.2);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--primary);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.submit-button:hover {
+  background: var(--primary-light);
+}
+
+.social-connect-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.social-button {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.social-button.twitter {
+  background: rgba(29, 161, 242, 0.1);
+  color: var(--twitter);
+  border: 1px solid rgba(29, 161, 242, 0.3);
+}
+
+.social-button.discord {
+  background: rgba(88, 101, 242, 0.1);
+  color: var(--discord);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+}
+
+.social-button.reddit {
+  background: rgba(255, 87, 0, 0.1);
+  color: var(--reddit);
+  border: 1px solid rgba(255, 87, 0, 0.3);
+}
+
+.social-button.telegram {
+  background: rgba(0, 136, 204, 0.1);
+  color: var(--telegram);
+  border: 1px solid rgba(0, 136, 204, 0.3);
+}
+
+.social-button:hover {
+  opacity: 0.9;
+}
+
+.security-options {
+  margin: 2rem 0;
+}
+
+.security-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(73, 107, 255, 0.1);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* The Notification Popup */
+.notification-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #007bff;
+  color: white;
+  padding: 1.2rem 2rem;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(134, 183, 243, 0.412);
+  z-index: 9999;
+  animation: fadeInOut 3s ease-in-out forwards;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
   }
-  .form-group {
-    margin-bottom: 15px;
+  20% {
+    opacity: 1;
   }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .web3-profile-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .profile-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .social-connect-buttons {
+    grid-template-columns: 1fr;
+  }
+}
