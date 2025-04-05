@@ -16,8 +16,8 @@ const features = [
   {
     title: "Real-time Toxicity Detection",
     description: "Instantly identify and mitigate toxicity on major platforms like Reddit and WhatsApp.",
-    logo: logo1, // Use the imported image
-    image: logo1, // replace this logo1 with new image that anjali will send
+    logo: logo1,
+    image: logo1,
   },
   {
     title: "Content Filtering",

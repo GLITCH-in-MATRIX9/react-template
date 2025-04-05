@@ -1,46 +1,44 @@
-// const express = require('express');
-// const router = express.Router();
-// const auth = require('../middlewares/auth');
-// const multer = require('multer');
-// const upload = multer({ storage: multer.memoryStorage() });
+const express = require('express');
+const router = express.Router();
+const {
+  getReports,
+  getReport,
+  createReport,
+  updateReport,
+  deleteReport,
+  uploadReportPhoto,
+  voteOnReport,
+  closeReport
+} = require('../controllers/reportController');
+const { protect, authorize } = require('../middlewares/auth');
+const advancedResults = require('../middlewares/advancedResults');
+const Report = require('../models/Report');
 
-// // Submit report (protected route)
-// router.post('/', auth, upload.single('screenshot'), async (req, res) => {
-//   try {
-//     const { description, website, username } = req.body;
-    
-//     // Verify user has connected wallet
-//     if (!req.user.walletAddress) {
-//       return res.status(400).json({ 
-//         message: 'Please connect your wallet in profile settings' 
-//       });
-//     }
+// Include other resource routers
+const voteRouter = require('./voteRoutes');
 
-//     // Upload to IPFS and create DAO proposal
-//     const ipfsHash = await uploadToIPFS({
-//       userId: req.user.id,
-//       description,
-//       screenshot: req.file.buffer
-//     });
+// Re-route into other resource routers
+router.use('/:reportId/votes', voteRouter);
 
-//     const txHash = await createDAOProposal(
-//       ipfsHash, 
-//       req.user.walletAddress // Submit from user's wallet
-//     );
+router
+  .route('/')
+  .get(
+    advancedResults(Report, {
+      path: 'submittedBy',
+      select: 'name email'
+    }),
+    getReports
+  )
+  .post(protect, createReport);
 
-//     // Save to database
-//     const report = new Report({
-//       submittedBy: req.user.id,
-//       description,
-//       ipfsHash,
-//       txHash,
-//       walletAddress: req.user.walletAddress // Track submitter's wallet
-//     });
+router
+  .route('/:id')
+  .get(getReport)
+  .put(protect, updateReport)
+  .delete(protect, deleteReport);
 
-//     await report.save();
-//     res.status(201).json(report);
+router.route('/:id/photo').put(protect, uploadReportPhoto);
+router.route('/:id/vote').put(protect, voteOnReport);
+router.route('/:id/close').put(protect, authorize('admin', 'moderator'), closeReport);
 
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
+module.exports = router;

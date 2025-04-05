@@ -26,3 +26,8 @@ module.exports = async function(req, res, next) {
     res.status(401).json({ message: 'Token is not valid' });
   }
 };
+
+exports.protect = (req, res, next) => {
+  console.log('Middleware executed');
+  next(); // Call next() to proceed to the route handler
+};

@@ -1,199 +1,313 @@
-import React, { useState } from 'react';
-import './Styles/ReportPage.css';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { ethers } from 'ethers';
+import { Card, Button, Input, Table, Tag, message } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
-function Report() {
-  const [showReportForm, setShowReportForm] = useState(false);
-  const [showVotePopup, setShowVotePopup] = useState(false);
-  const [selectedReportId, setSelectedReportId] = useState(null);
-  const [reports, setReports] = useState([
-    { id: 1, submittedBy: 'User1', votes: 10, status: 'Open' },
-    { id: 2, submittedBy: 'User2', votes: 5, status: 'Open' },
-    { id: 3, submittedBy: 'User3', votes: 15, status: 'Closed' },
-  ]);
+// Contract configuration
+const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545");
 
-  const handleReportSubmit = (e) => {
-    e.preventDefault();
-    alert('Report submitted successfully!');
-    setShowReportForm(false);
+// Contract ABI
+const contractABI = [
+  "function submitReport(string memory _description) public",
+  "function voteOnReport(uint _id, bool _voteYes) public",
+  "function getReport(uint _id) public view returns (string memory, uint, uint, address, bool, bool, bool)",
+  "function reportId() public view returns (uint)",
+  "event ReportSubmitted(uint indexed id, string description, address submitter)",
+  "event Voted(uint indexed id, address voter, bool voteYes)"
+];
+
+// Debounce helper function
+const debounce = (func, wait) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
+
+const Reports = () => {
+  const [description, setDescription] = useState('');
+  const [reports, setReports] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [account, setAccount] = useState('');
+  const [contract, setContract] = useState(null);
+  const [lastBlock, setLastBlock] = useState(0);
+  const listenersAdded = useRef(false);
+
+  // Fetch reports with caching and throttling
+  const fetchReports = useCallback(async () => {
+    if (!contract) return;
+    
+    try {
+      const currentBlock = await provider.getBlockNumber();
+      if (currentBlock <= lastBlock) return;
+      
+      setLoading(true);
+      const totalReports = await contract.reportId();
+      const reportsData = [];
+
+      for (let i = 0; i < totalReports; i++) {
+        const report = await contract.getReport(i);
+        reportsData.push({
+          id: i,
+          description: report[0],
+          yesVotes: report[1].toString(),
+          noVotes: report[2].toString(),
+          submitter: report[3],
+          resolved: report[4],
+          canVote: report[5],
+          isVotingOpen: report[6]
+        });
+      }
+
+      setReports(reportsData.reverse());
+      setLastBlock(currentBlock);
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [contract, lastBlock]);
+
+  // Debounced version of fetchReports
+  const debouncedFetchReports = useCallback(
+    debounce(fetchReports, 1000),
+    [fetchReports]
+  );
+
+  // Initialize Web3 connection
+  const initializeWeb3 = useCallback(async () => {
+    if (!window.ethereum || listenersAdded.current) return;
+
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+      
+      const daoContract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+
+      // Verify contract exists
+      const code = await provider.getCode(contractAddress);
+      if (code === '0x') {
+        throw new Error("Contract not deployed at this address!");
+      }
+
+      setContract(daoContract);
+      setAccount(address);
+      await fetchReports();
+
+      // Add event listeners only once
+      if (!listenersAdded.current) {
+        daoContract.on(daoContract.filters.ReportSubmitted(), debouncedFetchReports);
+        daoContract.on(daoContract.filters.Voted(), debouncedFetchReports);
+        listenersAdded.current = true;
+      }
+
+    } catch (error) {
+      console.error("Connection error:", error);
+      message.error(error.message);
+    }
+  }, [fetchReports, debouncedFetchReports]);
+
+  useEffect(() => {
+    initializeWeb3();
+
+    return () => {
+      if (contract && listenersAdded.current) {
+        contract.removeAllListeners();
+      }
+    };
+  }, [initializeWeb3, contract]);
+
+  // Submit a new report
+  const submitReport = async () => {
+    if (!description.trim()) {
+      message.warning("Please enter a description");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const tx = await contract.submitReport(description);
+      await tx.wait();
+      message.success("Report submitted!");
+      setDescription('');
+    } catch (error) {
+      console.error("Submission error:", error);
+      message.error(error.reason || "Failed to submit report");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleVote = (agree) => {
-    const updatedReports = reports.map((report) =>
-      report.id === selectedReportId
-        ? { ...report, votes: agree ? report.votes + 1 : report.votes - 1 }
-        : report
-    );
-    setReports(updatedReports);
-    setShowVotePopup(false);
+  // Vote on a report
+  const voteOnReport = async (id, voteYes) => {
+    try {
+      setLoading(true);
+      message.info(`Processing your ${voteYes ? 'YES' : 'NO'} vote...`);
+      
+      // Explicit gas limit to prevent out-of-gas errors
+      const tx = await contract.voteOnReport(id, voteYes, { 
+        gasLimit: 300000 
+      });
+      
+      // Wait for 1 confirmation
+      const receipt = await tx.wait(1);
+      
+      if (receipt.status === 1) {
+        message.success(`Vote ${voteYes ? 'YES' : 'NO'} recorded!`);
+        // Force immediate refresh (don't wait for event)
+        await fetchReports();
+      } else {
+        throw new Error("Transaction failed");
+      }
+    } catch (error) {
+      console.error("Voting error:", error);
+      message.error(
+        error.reason?.replace('execution reverted: ', '') || 
+        error.message || 
+        "Vote failed"
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return (
-    <div className="report-page-container">
-      {/* Hero Section */}
-      <div className="report-hero-section">
-        <h1 className="report-hero-heading">Report Toxic Content and Let DAO Decide Your Fate!</h1>
-        <div className="report-hero-buttons">
-          <button 
-            className="report-primary-btn" 
-            onClick={() => setShowReportForm(true)}
-          >
-            Submit Report
-          </button>
-          <button 
-            className="report-secondary-btn" 
-            onClick={() => alert('View Closed Reports')}
-          >
-            View Closed Reports
-          </button>
-        </div>
-      </div>
-
-      {/* DAO Voting Section */}
-      <div className="report-dao-section">
-        <h2 className="report-section-title">DAO Voting Section</h2>
-        <div className="report-table-container">
-          <table className="report-data-table">
-            <thead>
-              <tr>
-                <th>Report ID</th>
-                <th>Submitted By</th>
-                <th>Votes</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reports.map((report) => (
-                <tr key={report.id}>
-                  <td>{report.id}</td>
-                  <td>{report.submittedBy}</td>
-                  <td>{report.votes}</td>
-                  <td className={`report-status-${report.status.toLowerCase()}`}>
-                    <span className="status-cell">
-                      {report.status}
-                    </span>
-                  </td>
-                  <td>
-                    {report.status === 'Open' && (
-                      <button
-                        className="report-vote-btn table-action-btn"
-                        onClick={() => {
-                          setSelectedReportId(report.id);
-                          setShowVotePopup(true);
-                        }}
-                      >
-                        Vote Now
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Popup for Voting */}
-      {showVotePopup && (
-        <div className="report-popup-overlay">
-          <div className="report-popup-content">
-            <h3>Do you agree with this complaint?</h3>
-            <div className="report-popup-btn-group">
-              <button 
-                className="report-agree-btn" 
-                onClick={() => handleVote(true)}
+  // Table columns configuration
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      width: 80,
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+      render: (text) => <span style={{ maxWidth: 200 }}>{text}</span>,
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      width: 150,
+      render: (_, record) => (
+        <Tag color={record.resolved ? 'blue' : record.isVotingOpen ? 'green' : 'orange'}>
+          {record.resolved ? 'Resolved' : record.isVotingOpen ? 'Voting Open' : 'Voting Closed'}
+        </Tag>
+      ),
+    },
+    {
+      title: 'Votes',
+      key: 'votes',
+      width: 200,
+      render: (_, record) => (
+        <span>
+          <Tag color="green">{record.yesVotes} YES</Tag>
+          <Tag color="red">{record.noVotes} NO</Tag>
+        </span>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      width: 200,
+      render: (_, record) => (
+        <div style={{ display: 'flex', gap: 8 }}>
+          {!record.resolved && record.isVotingOpen && record.canVote && (
+            <>
+              <Button 
+                icon={<CheckOutlined />} 
+                onClick={() => voteOnReport(record.id, true)}
+                disabled={loading || !account}
+                size="small"
               >
                 Yes
-              </button>
-              <button 
-                className="report-disagree-btn" 
-                onClick={() => handleVote(false)}
+              </Button>
+              <Button 
+                icon={<CloseOutlined />} 
+                danger 
+                onClick={() => voteOnReport(record.id, false)}
+                disabled={loading || !account}
+                size="small"
               >
                 No
-              </button>
-            </div>
-            <button 
-              className="report-close-btn" 
-              onClick={() => setShowVotePopup(false)}
-            >
-              Close
-            </button>
-          </div>
+              </Button>
+            </>
+          )}
         </div>
-      )}
+      ),
+    },
+  ];
 
-      {/* Popup Form for Submitting Report */}
-      {showReportForm && (
-        <div className="report-popup-overlay">
-          <div className="report-popup-content">
-            <h3>Submit a Report</h3>
-            <form onSubmit={handleReportSubmit} className="report-form">
-              <div className="report-form-group">
-                <label>Complaint:</label>
-                <textarea
-                  className="report-form-input"
-                  placeholder="Describe the toxic content..."
-                  required
-                  rows="5"
-                />
-              </div>
-              <div className="report-form-group">
-                <label>Website where you faced the issue:</label>
-                <input 
-                  type="text" 
-                  className="report-form-input"
-                  placeholder="Enter website URL" 
-                  required 
-                />
-              </div>
-              <div className="report-form-group">
-                <label>Username of the harasser:</label>
-                <input 
-                  type="text" 
-                  className="report-form-input"
-                  placeholder="Enter username" 
-                  required 
-                />
-              </div>
-              <div className="report-form-group">
-                <label>Upload Screenshot:</label>
-                <div className="report-file-upload">
-                  <input
-                    type="file"
-                    id="screenshot"
-                    className="report-file-input"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const fileName = e.target.files[0] ? e.target.files[0].name : "No file chosen";
-                      document.getElementById("file-name").textContent = fileName;
-                    }}
-                  />
-                  <label htmlFor="screenshot" className="report-file-label">
-                    Choose File
-                  </label>
-                  <div id="file-name" className="report-file-name">
-                    No file chosen
-                  </div>
-                </div>
-              </div>
-              <button 
-                type="submit" 
-                className="report-submit-btn"
-              >
-                Submit Report
-              </button>
-            </form>
-            <button 
-              className="report-close-btn" 
-              onClick={() => setShowReportForm(false)}
+  return (
+    <div style={{ padding: 24, maxWidth: 1000, margin: '0 auto' }}>
+      <Card 
+        title="DAO Voting System" 
+        style={{ marginBottom: 24 }}
+        loading={loading && reports.length === 0}
+      >
+        {!account ? (
+          <Button 
+            type="primary" 
+            onClick={initializeWeb3}
+            loading={loading}
+          >
+            Connect Wallet
+          </Button>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <Tag color="green">Connected: {`${account.slice(0, 6)}...${account.slice(-4)}`}</Tag>
+            <Button 
+              onClick={debouncedFetchReports}
+              loading={loading}
             >
-              Close
-            </button>
+              Refresh
+            </Button>
           </div>
+        )}
+
+        <div style={{ marginTop: 16 }}>
+          <Input.TextArea
+            rows={4}
+            placeholder="Enter report description..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            style={{ marginBottom: 16 }}
+            disabled={!account}
+          />
+          <Button 
+            type="primary" 
+            onClick={submitReport}
+            loading={loading}
+            disabled={!account || !description.trim()}
+            block
+          >
+            Submit New Report
+          </Button>
         </div>
-      )}
+      </Card>
+
+      <Card 
+        title={`Current Reports (${reports.length})`}
+        loading={loading && reports.length === 0}
+      >
+        <Table 
+          columns={columns} 
+          dataSource={reports} 
+          rowKey="id"
+          pagination={{ pageSize: 5 }}
+          scroll={{ x: true }}
+          loading={loading && reports.length > 0}
+        />
+      </Card>
     </div>
   );
-}
+};
 
-export default Report;  
+export default Reports;
