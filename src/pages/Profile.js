@@ -5,9 +5,9 @@ import background from "./Styles/background2.png"; // Import Image
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [formData, setFormData] = useState({
-    username: 'Janvi Behal',
-    email: 'user@web3mail.com',
-    contact: '+1 234 567 8900',
+    username: 'Anjali Dass',
+    email: 'Anjali95912@yahoo.com',
+    contact: '+91 8130035736',
     twitter: '@web3user',
     discord: 'web3user#1234',
     reddit: 'u/web3enthusiast',

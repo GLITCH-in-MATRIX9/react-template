@@ -135,7 +135,7 @@ contract DaoVoting {
             r.noVotes,
             r.submitter,
             r.resolved,
-            !r.voted[voter] && votingPower[voter] >= minimumStake
+            !r.voted[voter] && votingPower[voter] >= minimumStake,
             isVotingOpen
         );
     }
