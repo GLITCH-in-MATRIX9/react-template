@@ -11,6 +11,9 @@ import logo5 from "../assets/logo5.png";
 import logo6 from "../assets/logo6.png";
 import logo7 from "../assets/logo7.png";
 import logo8 from "../assets/logo8.png";
+import Pic1 from "../assets/Pic1.jpg";
+import Pic2 from "../assets/Pic2.jpg";
+import Pic3 from "../assets/Pic3.jpg";
 
 const features = [
   {
@@ -142,6 +145,48 @@ const Features = () => {
           </div>
         )}
       </div>
+
+      <h2 className="section-divider-heading">How SafeWeb Protects Your Digital Experience</h2>
+
+      {/* Alternating Image-Description Section */}
+<div className="alternating-section">
+  {[
+    {
+      image: Pic1,
+      title: "Real-time Protection",
+      description: "Our AI scans conversations in real-time across platforms, instantly flagging toxic content before it reaches you. The system learns from each interaction to provide increasingly accurate protection."
+    },
+    {
+      image: Pic2,
+      title: "Comprehensive Analytics",
+      description: "Get instant, detailed toxicity analysis with percentage scores across multiple categories. Our system detects harmful content with 99.7% accuracy and provides actionable PDF reports you can download for record-keeping or further analysis."
+    },
+    {
+      image: Pic3,
+      title: "24/7 Cybersecurity Assistant",
+      description: "Our intelligent chatbot provides immediate help with cyber threats, legal information, and safety protocols. Whether you need helpline numbers, explanations of Indian cyber laws, or quick safety tips, SafeWeb Bot is always available."
+    },
+    // Add more items here as needed - they will automatically alternate
+  ].map((item, index) => (
+    <div 
+      key={index}
+      className={`alternating-row ${index % 2 === 0 ? '' : 'reverse'}`}
+    >
+      <motion.div 
+        className="alternating-image"
+        whileHover={{ scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <img src={item.image} alt={item.title} />
+      </motion.div>
+      <div className="alternating-text">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

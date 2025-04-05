@@ -122,11 +122,16 @@ body {
 .features-grid {
   position: relative;
   width: 100%;
-  height: 80vh; 
+  height: 90vh; 
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+background: 
+    /* Semi-dark overlay with 90% opacity */
+    /* Background image */
+    linear-gradient(rgba(0, 0, 0, 0.814), rgba(0, 0, 0, 0.151)),
+    url(/src/assets/background.png) center/cover no-repeat;
 }
 
 /* Circular Path Container */
@@ -162,10 +167,17 @@ body {
   background-color: var(--feature-bg);
   border: 2px solid var(--neon-blue);
   border-radius: 50%; /* Make it a circle */
-  width: 80px; /* Smaller logos */
-  height: 80px; /* Smaller logos */
+  width: 75px; /* Smaller logos */
+  height: 75px; /* Smaller logos */
   cursor: pointer;
   z-index: 2; /* Ensure logos are above the circular line */
+}
+
+
+.feature-logo:hover {
+  transform: scale(1.3);/* Scale up by 30% */
+  z-index: 3; /* Bring hovered item to front */
+  box-shadow: 0 0 15px var(--neon-blue); /* Add glow on hover */
 }
 
 .feature-logo img {
@@ -195,7 +207,7 @@ body {
   z-index: 1;
 
   /* Gradient text color */
-  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  background: #fff;
   -webkit-background-clip: text; /* Clip the background to the text */
   background-clip: text; /* Standard property */
   color: transparent; /* Make the text color transparent to show the gradient */
@@ -265,4 +277,120 @@ body {
 
 .popup-content button:hover {
   background: var(--neon-purple);
+}
+
+.section-divider-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #5d84fe;
+  margin: 60px 0 40px;
+  position: relative;
+}
+
+.section-divider-heading::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, #5d84fe, #9b72cf);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+/* Alternating Section Styles */
+.alternating-section {
+  margin: 80px auto;
+  max-width: 950px;
+  padding: 0 20px;
+}
+
+.alternating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+
+.alternating-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.alternating-image {
+  flex: 1;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: rotate(-3deg);
+  max-width: 250px;
+}
+
+.alternating-row.reverse .alternating-image {
+  transform: rotate(3deg);
+}
+
+.alternating-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Update the alternating-text class */
+.alternating-text {
+  flex: 1;
+  max-width: 500px;
+  padding: 25px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  border: 1px solid #e0e0e0; /* Light grey border */
+  box-shadow: 
+    0 0 10px rgba(93, 132, 254, 0.3), /* Blue glow */
+    0 0 20px rgba(255, 255, 255, 0.2) /* White glow */;
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  transition: all 0.3s ease;
+}
+
+/* Add hover effects */
+.alternating-text:hover {
+  border-color: #5d84fe; /* Blue border on hover */
+  box-shadow: 
+    0 0 15px rgba(93, 132, 254, 0.5),
+    0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Update title styling */
+.alternating-text h3 {
+  font-size: 2rem;
+  color: #5d84fe;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(93, 132, 254, 0.3); /* Text glow */
+}
+
+/* Update paragraph styling */
+.alternating-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0; /* Light grey text */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .alternating-row, 
+  .alternating-row.reverse {
+    flex-direction: column;
+  }
+  
+  .alternating-image, 
+  .alternating-text {
+    max-width: 100%;
+    transform: none !important;
+  }
+  
+  .alternating-text {
+    margin-top: 20px;
+  }
 }
