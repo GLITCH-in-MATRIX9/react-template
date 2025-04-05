@@ -279,6 +279,44 @@ background:
   background: var(--neon-purple);
 }
 
+/* Add these new styles to your existing Features.css */
+
+.feature-popup .popup-content {
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.feature-popup .short-description {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #5d84fe;
+}
+
+.feature-popup .detailed-description {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border-left: 3px solid #5d84fe;
+}
+
+.feature-popup .detailed-description p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Remove or comment out the styles related to feature-image */
+/*
+.feature-image {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+*/
+
 .section-divider-heading {
   text-align: center;
   font-size: 2.5rem;

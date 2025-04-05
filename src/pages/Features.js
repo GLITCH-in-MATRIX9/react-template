@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import "./Features.css";
+import "./Styles/Features.css";
 
 // Import images from the assets folder
 import logo1 from "../assets/logo1.png"; 
@@ -18,51 +18,48 @@ import Pic3 from "../assets/Pic3.jpg";
 const features = [
   {
     title: "Real-time Toxicity Detection",
+    shortDescription: "Instantly identify and mitigate toxicity on major platforms like Reddit and WhatsApp.",
+    detailedDescription: "Our advanced AI continuously monitors conversations across platforms, detecting toxic content in real-time with 99.7% accuracy. The system flags harmful language as it appears, allowing for immediate intervention.",
+    logo: logo1,
     description: "Instantly identify and mitigate toxicity on major platforms like Reddit and WhatsApp.",
     logo: logo1,
     image: logo1,
   },
   {
     title: "Content Filtering",
-    description: "Seamlessly filter and block harmful or inappropriate content in real-time.",
+    shortDescription: "Seamlessly filter and block harmful or inappropriate content in real-time.",
+    detailedDescription: "Customize your filtering preferences to automatically block harmful content based on your sensitivity levels. The system adapts to your usage patterns for increasingly accurate filtering.",
     logo: logo2,
-    image: logo2,
   },
   {
     title: "Downloadable Reports & Graphs",
-    description: "Generate comprehensive reports and visualize analytics with downloadable graphs.",
+    shortDescription: "Generate comprehensive reports and visualize analytics with downloadable graphs.",
+    detailedDescription: "Access detailed analytics about your online interactions with exportable PDF reports and visual graphs. Track toxicity trends over time and share findings with authorities if needed.",
     logo: logo3,
-    image: logo3,
   },
   {
     title: "Blur Intensity Setter",
-    description: "Customize content visibility with an adjustable blur intensity feature.",
+    shortDescription: "Customize content visibility with an adjustable blur intensity feature.",
+    detailedDescription: "Tailor your experience with our adjustable blur feature that lets you control how much questionable content you want to see. Perfect for gradually acclimating to online interactions.",
     logo: logo4,
-    image: logo4,
   },
   {
     title: "Category-wise Detection",
-    description: "Detect and classify toxicity across multiple categories for better analysis.",
+    shortDescription: "Detect and classify toxicity across multiple categories for better analysis.",
+    detailedDescription: "Our system classifies toxicity into specific categories (hate speech, threats, harassment, etc.) providing detailed breakdowns of each interaction for precise understanding and response.",
     logo: logo5,
-    image: logo5,
   },
   {
     title: "Interactive Cybersecurity Chatbot",
-    description: "Access instant support with our intelligent cybersecurity chatbot.",
+    shortDescription: "Access instant support with our intelligent cybersecurity chatbot.",
+    detailedDescription: "Get immediate help with our 24/7 cybersecurity assistant. It provides legal information, safety protocols, and can connect you with helplines based on Indian cyber laws.",
     logo: logo6,
-    image: logo6,
   },
-  // {
-  //   title: "Advanced Security Features",
-  //   description: "Utilize advanced protocols to enhance data security and privacy.",
-  //   logo: logo7,
-  //   image: logo7,
-  // },
   {
-    title: "Cross-Platform Compatibility", //8
-    description: "Experience seamless performance across various devices and platforms.",
+    title: "Cross-Platform Compatibility",
+    shortDescription: "Experience seamless performance across various devices and platforms.",
+    detailedDescription: "SafeWeb works consistently across all your devices - smartphones, tablets, and computers - with synchronized settings and protection levels for a unified experience.",
     logo: logo8,
-    image:logo8,
   }
 ];
 
@@ -81,32 +78,26 @@ const Features = () => {
     <div className="features-page">
       {/* Background Elements */}
       <div className="background-gradient"></div>
-      {/* <div className="glowing-grid"></div> */}
       <div className="particles-container">
-  {Array.from({ length: 100 }).map((_, index) => {
-    const color = Math.random() > 0.5 ? "#fff" : "#5d84fe"; // Randomly assign neon blue or neon purple
-    return (
-      <div
-        key={index}
-        className="particle"
-        style={{
-          top: `${Math.random() * 120}%`,
-          left: `${Math.random() * 120}%`,
-          animationDelay: `${Math.random() * 0.5}s`,
-          width: `${Math.random() * 8 + 2}px`, // Larger particles (8px to 20px)
-          height: `${Math.random() * 8 + 2}px`, // Larger particles (8px to 20px)
-          backgroundColor: color, // Assign the random color
-          boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`, // Add glow effect
-        }}
-      ></div>
-    );
-  })}
-</div>
-
-      {/* Features Heading
-      <div className="features-heading">
-        <h1>Discover the Features That Make SafeWeb Unique</h1>
-      </div> */}
+        {Array.from({ length: 100 }).map((_, index) => {
+          const color = Math.random() > 0.5 ? "#fff" : "#5d84fe";
+          return (
+            <div
+              key={index}
+              className="particle"
+              style={{
+                top: `${Math.random() * 120}%`,
+                left: `${Math.random() * 120}%`,
+                animationDelay: `${Math.random() * 0.5}s`,
+                width: `${Math.random() * 8 + 2}px`,
+                height: `${Math.random() * 8 + 2}px`,
+                backgroundColor: color,
+                boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`,
+              }}
+            ></div>
+          );
+        })}
+      </div>
 
       {/* Features Grid */}
       <div className="features-grid">
@@ -133,13 +124,10 @@ const Features = () => {
           <div className="feature-popup">
             <div className="popup-content">
               <h2>{selectedFeature.title}</h2>
-              <p>{selectedFeature.description}</p>
-              {/* Display the feature's image beneath the description */}
-              <img
-                src={selectedFeature.image}
-                alt={selectedFeature.title}
-                className="feature-image"
-              />
+              <p className="short-description">{selectedFeature.shortDescription}</p>
+              <div className="detailed-description">
+                <p>{selectedFeature.detailedDescription}</p>
+              </div>
               <button onClick={closePopup}>Close</button>
             </div>
           </div>
@@ -149,44 +137,42 @@ const Features = () => {
       <h2 className="section-divider-heading">How SafeWeb Protects Your Digital Experience</h2>
 
       {/* Alternating Image-Description Section */}
-<div className="alternating-section">
-  {[
-    {
-      image: Pic1,
-      title: "Real-time Protection",
-      description: "Our AI scans conversations in real-time across platforms, instantly flagging toxic content before it reaches you. The system learns from each interaction to provide increasingly accurate protection."
-    },
-    {
-      image: Pic2,
-      title: "Comprehensive Analytics",
-      description: "Get instant, detailed toxicity analysis with percentage scores across multiple categories. Our system detects harmful content with 99.7% accuracy and provides actionable PDF reports you can download for record-keeping or further analysis."
-    },
-    {
-      image: Pic3,
-      title: "24/7 Cybersecurity Assistant",
-      description: "Our intelligent chatbot provides immediate help with cyber threats, legal information, and safety protocols. Whether you need helpline numbers, explanations of Indian cyber laws, or quick safety tips, SafeWeb Bot is always available."
-    },
-    // Add more items here as needed - they will automatically alternate
-  ].map((item, index) => (
-    <div 
-      key={index}
-      className={`alternating-row ${index % 2 === 0 ? '' : 'reverse'}`}
-    >
-      <motion.div 
-        className="alternating-image"
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        <img src={item.image} alt={item.title} />
-      </motion.div>
-      <div className="alternating-text">
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
+      <div className="alternating-section">
+        {[
+          {
+            image: Pic1,
+            title: "Real-time Protection",
+            description: "Our AI scans conversations in real-time across platforms, instantly flagging toxic content before it reaches you. The system learns from each interaction to provide increasingly accurate protection."
+          },
+          {
+            image: Pic2,
+            title: "Comprehensive Analytics",
+            description: "Get instant, detailed toxicity analysis with percentage scores across multiple categories. Our system detects harmful content with 99.7% accuracy and provides actionable PDF reports you can download for record-keeping or further analysis."
+          },
+          {
+            image: Pic3,
+            title: "24/7 Cybersecurity Assistant",
+            description: "Our intelligent chatbot provides immediate help with cyber threats, legal information, and safety protocols. Whether you need helpline numbers, explanations of Indian cyber laws, or quick safety tips, SafeWeb Bot is always available."
+          },
+        ].map((item, index) => (
+          <div 
+            key={index}
+            className={`alternating-row ${index % 2 === 0 ? '' : 'reverse'}`}
+          >
+            <motion.div 
+              className="alternating-image"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <img src={item.image} alt={item.title} />
+            </motion.div>
+            <div className="alternating-text">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
     </div>
   );
 };

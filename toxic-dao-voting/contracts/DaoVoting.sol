@@ -15,7 +15,7 @@ contract DaoVoting {
 
     address public admin;
     uint public reportId;
-    uint public constant VOTING_PERIOD = 3 days;
+    uint public constant VOTING_PERIOD = 1 hours;
     mapping(uint => Report) public reports;
     mapping(uint => uint) public reportTimestamps;
     
@@ -135,7 +135,7 @@ contract DaoVoting {
             r.noVotes,
             r.submitter,
             r.resolved,
-            !r.voted[voter] && votingPower[voter] >= minimumStake,
+            !r.voted[voter] && votingPower[voter] >= minimumStake
             isVotingOpen
         );
     }

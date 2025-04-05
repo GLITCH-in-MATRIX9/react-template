@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\anjal\\OneDrive\\Desktop\\Anjali's work\\safeweb-github Folder\\react-template\\toxic-dao-voting\\contracts\\DaoVoting.sol": {
-      "lastModificationDate": 1743800294800,
-      "contentHash": "969cdb0e9695f3d27d881ae82fe2d840",
+      "lastModificationDate": 1743825913648,
+      "contentHash": "0b35f23f2edf860dda2aeacaab541811",
       "sourceName": "contracts/DaoVoting.sol",
       "solcConfig": {
         "version": "0.8.19",
